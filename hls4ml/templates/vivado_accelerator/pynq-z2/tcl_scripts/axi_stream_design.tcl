@@ -56,4 +56,8 @@ launch_runs impl_1 -to_step write_bitstream -jobs 6
 wait_on_run -timeout 360 impl_1
 
 open_run impl_1
+
+set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
+write_bitstream ./${project_name}_vivado_accelerator/bitstream_compressed.bit -force
+
 report_utilization -file util.rpt -hierarchical -hierarchical_percentages
