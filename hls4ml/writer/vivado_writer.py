@@ -640,7 +640,7 @@ class VivadoWriter(Writer):
                 for i in model_inputs:
                     newline += indent + '{var};\n'.format(var=i.definition_cpp(name_suffix='_ap'))
                     newline += indent + 'nnet::convert_data<{}, {}, {}>({}, {}_ap);\n'.format(
-                        dtype, i.type.name, i.size_cpp(), i.name, i.name
+                        dtype, 'input_axi_t', i.size_cpp(), i.name, i.name
                     )
                 newline += '\n'
 
@@ -663,7 +663,7 @@ class VivadoWriter(Writer):
 
                 for o in model_outputs:
                     newline += indent + 'nnet::convert_data<{}, {}, {}>({}_ap, {});\n'.format(
-                        o.type.name, dtype, o.size_cpp(), o.name, o.name
+                        'output_axi_t', dtype, o.size_cpp(), o.name, o.name
                     )
 
             elif '// hls-fpga-machine-learning insert trace_outputs' in line:
