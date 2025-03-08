@@ -175,11 +175,11 @@ class VivadoAcceleratorWriter(VivadoWriter):
                 elif io_type == 'io_stream':
                     newline = ''
                     newline += indent + 'for(unsigned i = 0; i < N_IN / {input_t}::size; ++i) {{\n'
-                    # newline += indent + indent + '#pragma HLS PIPELINE\n'
+                    newline += indent + indent + '#pragma HLS PIPELINE\n'
                     newline += indent + indent + '{input_t} ctype;\n'
                     newline += indent + indent + '#pragma HLS DATA_PACK variable=ctype\n'
                     newline += indent + indent + 'for(unsigned j = 0; j < {input_t}::size; j++) {{\n'
-                    # newline += indent + indent + indent + '#pragma HLS UNROLL\n'
+                    newline += indent + indent + indent + '#pragma HLS UNROLL\n'
                     if self.vivado_accelerator_config.get_interface() == 'axi_stream':
                         newline += (
                             indent
@@ -217,10 +217,10 @@ class VivadoAcceleratorWriter(VivadoWriter):
                 elif io_type == 'io_stream':
                     newline = ''
                     newline += indent + 'for(unsigned i = 0; i < N_OUT / {result_t}::size; ++i) {{\n'
-                    # newline += indent + indent + '#pragma HLS PIPELINE\n'
+                    newline += indent + indent + '#pragma HLS PIPELINE\n'
                     newline += indent + indent + '{result_t} ctype = out_local.read();\n'
                     newline += indent + indent + 'for(unsigned j = 0; j < {result_t}::size; j++) {{\n'
-                    # newline += indent + indent + indent + '#pragma HLS UNROLL\n'
+                    newline += indent + indent + indent + '#pragma HLS UNROLL\n'
                     if self.vivado_accelerator_config.get_interface() == 'axi_stream':
                         newline += (
                             indent
